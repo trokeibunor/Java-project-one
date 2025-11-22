@@ -1,140 +1,181 @@
 import java.util.Scanner;
 import java.util.Random;
-
-
 public class myJavaApp {
-    //##################################################
-
+    
     // Method to greet the user
-    public static void greetUser(String userName){
-        String welcomeMessage = "Hello, " + userName + "! Welcome to the math quiz. You will be provided with 5 questions, and each carries one mark. Good luck!";
+    public static void greetUser(String userName) {
+        String welcomeMessage = "Hello, " + userName + "! Welcome to the math quiz.";
         System.out.println(welcomeMessage);
     }
-    // Method to print result
-    public static void printResult(String userName){
-        String farewellMessage = "Thanks for giving the quiz, " + userName + ". You will get your result soon.";
-        System.out.println(farewellMessage);
-    }
-    // Method to print question in the correct format.
-    public static void printQuestion(int num1, int num2, String op){
-        //Enter your code here to print a question
-        String question =  "What is " + num1 + op + num2 + " ?";
-        System.out.print(question);
-    }
-    // Method to give feedback to the user.
-    public static void answerFeedback(int userAnswer, int correctAnswer){
-        //Enter code to let the user know their and correct answers
-        // Feedback for Question 5
-        System.out.println("Your answer is: " + userAnswer);
-        System.out.println("The correct answer is: " + correctAnswer);
-    }
-  
-    //##################################################
 
-    public static void main( String[] args ) {
+    // Method to choose the operator based on the random choice integer generated
+    public static String chooseOperator(int opNum){
+        if (opNum == 1){
+            return " - ";
+        }
+        else if(opNum == 2){
+            return " - ";
+        }
+        else if(opNum == 3){
+            return " * ";
+        }
+        else{
+            return " / ";
+        }
+    }
+
+    // Method to perform the required operation and calculate the correct answer
+    public static int calculateAnswer(int n1, int n2, String op) {
+        int result = 0;
+        if(op == " - "){
+
+            return n1 - n2;
+        }
+        else if(op == " + "){
+            
+            return n1 + n2;
+        }
+        else if(op == " * "){
+            
+            return n1 * n2;
+        }
+        else if(op == " / "){
+            
+            return (int)(n1 / n2);
+        }
+        else{
+            return -1;
+
+        }
+        
+    }
+
+    // Method to print the question in the correct format
+    public static void printQuestion(int num1, int num2, String op) {
+        String question = "What is " + num1 + op + num2 + "?";
+        System.out.println(question);
+    }
+
+    // Method to bid farewell to the user and give them the result
+    public static void printResult(String userName, int score) {
+        // Write your code here.
+        String result = "Thanks " + userName + " for taking the quiz. Your score is " + score + "out of 5.";
+        System.out.println(result);
+    }
+ 
+ // MAIN STRUCTURE
+
+    public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         Random random = new Random();
-        int num1;
-        int num2;
-        String op;
-        String question;
-        String farewellMessage;
-        int userAnswer;
-        int correctAnswer;
 
+        int num1 = 0;
+        int num2 = 0;
+        int opNum = 0;
+        String op = "";
+        int userAnswer = 0;
+        int correctAnswer = 0;
+        int score = 0;
+
+        // Take input from user and save it in a variable
         System.out.print("Please enter your name: ");
         String userName = scan.nextLine();
 
-        // Make a customized greeting for the user and print it.
+        // Make a customized greeting for the user and print it
         greetUser(userName);
 
-        // Make 5 questions.
 
-        // Question 1
-        num1 = random.nextInt(10) + 1; 
-        num2 = random.nextInt(10) + 1; 
-        op = " + ";
-        printQuestion(num1, num2, op); // Question printing method call Question 1
-        // Input for Question 1
+        num1 = random.nextInt(10) + 1;
+        num2 = random.nextInt(10) + 1;
+        opNum = random.nextInt(4) + 1;
+        op = chooseOperator(opNum);
+        printQuestion(num1,num2,op);
         System.out.print("Ans: ");
         userAnswer = scan.nextInt();
-        // Compute correct answer for Question 1
-        correctAnswer = num1 + num2;
-        // Feedback for Question 1
-        answerFeedback(userAnswer, correctAnswer); // Feedback method call Question 1
-
-
-        // Question 2
-        num1 = random.nextInt(10) + 1; 
-        num2 = random.nextInt(10) + 1; 
-        op = " - ";
-        // Question printing method call Question 2
-        printQuestion(num1, num2, op);
-
-        // Input for Question 2
+        correctAnswer = calculateAnswer(num1, num2, op);
+        // Increase the score if the answer is correct.
+        if (userAnswer == correctAnswer){
+            System.out.println("Correct answer.");
+            score = score + 1;
+        }
+        else{
+            System.out.println("Oops, that's not right. The correct answer is: " + correctAnswer);
+        }
+        
+        num1 = random.nextInt(10) + 1;
+        num2 = random.nextInt(10) + 1;
+        opNum = random.nextInt(4) + 1;
+        op = chooseOperator(opNum);
+        printQuestion(num1,num2,op);
         System.out.print("Ans: ");
         userAnswer = scan.nextInt();
-        // Compute correct answer for Question 2
-        correctAnswer = num1 - num2;
-        // Feedback for Question 2
-        // Feedback method call Question 2
-        answerFeedback(userAnswer, correctAnswer);
-        
+        correctAnswer = calculateAnswer(num1, num2, op);
+        // Increase the score if the answer is correct.
+        if (userAnswer == correctAnswer){
+            System.out.println("Correct answer.");
+            score = score + 1;
 
+        }
+        else{
+            System.out.println("Oops, that's not right. The correct answer is: " + correctAnswer);
+        }
         
-        // Question 3
-        num1 = random.nextInt(10) + 1; 
-        num2 = random.nextInt(10) + 1; 
-        op = " / ";
-        // Question printing method call Question 3
-        printQuestion(num1, num2, op);
-        
-        
-        // Input for Question 3
+        num1 = random.nextInt(10) + 1;
+        num2 = random.nextInt(10) + 1;
+        opNum = random.nextInt(4) + 1;
+        op = chooseOperator(opNum);
+        printQuestion(num1,num2,op);
         System.out.print("Ans: ");
         userAnswer = scan.nextInt();
-        // Compute correct answer for Question 3
-        correctAnswer = (int)(num1 / num2);
-        // Feedback for Question 3
-        // Feedback method call Question 3
-        answerFeedback(userAnswer, correctAnswer);
+        correctAnswer = calculateAnswer(num1, num2, op);
+        // Increase the score if the answer is correct.
+        if (userAnswer == correctAnswer){
+            System.out.println("Correct answer.");
+            score = score + 1;
 
-
-        // Question 4
-        num1 = random.nextInt(10) + 1; 
-        num2 = random.nextInt(10) + 1; 
-        op = " * ";
-        // Question printing method call Question 4
-        printQuestion(num1, num2, op);
-
-        // Input for Question 4
-        System.out.print("Ans: ");
-        userAnswer = scan.nextInt();
-        // Compute correct answer for Question 4
-        correctAnswer = num1 * num2;
-        // Feedback for Question 4
-        // Feedback method call Question 4
-        answerFeedback(userAnswer, correctAnswer);
+        }
+        else{
+            System.out.println("Oops, that's not right. The correct answer is: " + correctAnswer);
+        }
         
-
-        // Question 5
-        num1 = random.nextInt(10) + 1;  
-        num2 = random.nextInt(10) + 1; 
-        op = " + ";
-        // Question printing method call Question 5
-        printQuestion(num1, num2, op);
-
-        // Input for Question 5
+        num1 = random.nextInt(10) + 1;
+        num2 = random.nextInt(10) + 1;
+        opNum = random.nextInt(4) + 1;
+        op = chooseOperator(opNum);
+        printQuestion(num1,num2,op);
         System.out.print("Ans: ");
         userAnswer = scan.nextInt();
-        // Compute correct answer for Question 5
-        correctAnswer = num1 + num2;
-        // Feedback for Question 5
-        // Feedback method call Question 5
-        answerFeedback(userAnswer, correctAnswer);
+        correctAnswer = calculateAnswer(num1, num2, op);
+        // Increase the score if the answer is correct.
+        if (userAnswer == correctAnswer){
+            System.out.println("Correct answer.");
+            score = score + 1;
 
-        // Print a customized farewell message.
-        printResult(userName);
+        }
+        else{
+            System.out.println("Oops, that's not right. The correct answer is: " + correctAnswer);
+        }
+        
+        num1 = random.nextInt(10) + 1;
+        num2 = random.nextInt(10) + 1;
+        opNum = random.nextInt(4) + 1;
+        op = chooseOperator(opNum);
+        printQuestion(num1,num2,op);
+        System.out.print("Ans: ");
+        userAnswer = scan.nextInt();
+        correctAnswer = calculateAnswer(num1, num2, op);
+        // Increase the score if the answer is correct.
+        if (userAnswer == correctAnswer){
+            System.out.println("Correct answer.");
+            score = score + 1;
+
+        }
+        else{
+            System.out.println("Oops, that's not right. The correct answer is: " + correctAnswer);
+        }
+        
+        // Call the printResult method here.
+        printResult(userName, score);
 
     }
 }
