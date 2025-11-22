@@ -57,10 +57,9 @@ public class myJavaApp {
     }
 
     // Method to bid farewell to the user and give them the result
-    public static void printResult(String userName, int score) {
-        // Write your code here.
-        String result = "Thanks " + userName + " for taking the quiz. Your score is " + score + "out of 5.";
-        System.out.println(result);
+    public static void printResult(String userName, int score){
+        String farewellMessage = "Thanks for taking the quiz. " + userName + ". Your score is " + score + " out of 5.";
+        System.out.println(farewellMessage);
     }
  
  // MAIN STRUCTURE
@@ -76,6 +75,7 @@ public class myJavaApp {
         int userAnswer = 0;
         int correctAnswer = 0;
         int score = 0;
+        int totalQuestions = 0;
 
         // Take input from user and save it in a variable
         System.out.print("Please enter your name: ");
@@ -84,98 +84,29 @@ public class myJavaApp {
         // Make a customized greeting for the user and print it
         greetUser(userName);
 
+        while (totalQuestions < 5){
 
-        num1 = random.nextInt(10) + 1;
-        num2 = random.nextInt(10) + 1;
-        opNum = random.nextInt(4) + 1;
-        op = chooseOperator(opNum);
-        printQuestion(num1,num2,op);
-        System.out.print("Ans: ");
-        userAnswer = scan.nextInt();
-        correctAnswer = calculateAnswer(num1, num2, op);
-        // Increase the score if the answer is correct.
-        if (userAnswer == correctAnswer){
-            System.out.println("Correct answer.");
-            score = score + 1;
+            num1 = random.nextInt(10) + 1;
+            num2 = random.nextInt(10) + 1;
+            opNum = random.nextInt(4) + 1;
+            op = chooseOperator(opNum);
+            printQuestion(num1,num2,op);
+            System.out.print("Ans: ");
+            userAnswer = scan.nextInt();
+            correctAnswer = calculateAnswer(num1, num2, op);
+            // Increase the score if the answer is correct.
+            if (userAnswer == correctAnswer){
+                System.out.println("Correct answer.");
+                score = score + 1;
+            }
+            else{
+                System.out.println("Oops, that's not right. The correct answer is: " + correctAnswer);
+            }
+            totalQuestions = totalQuestions + 1;
         }
-        else{
-            System.out.println("Oops, that's not right. The correct answer is: " + correctAnswer);
-        }
-        
-        num1 = random.nextInt(10) + 1;
-        num2 = random.nextInt(10) + 1;
-        opNum = random.nextInt(4) + 1;
-        op = chooseOperator(opNum);
-        printQuestion(num1,num2,op);
-        System.out.print("Ans: ");
-        userAnswer = scan.nextInt();
-        correctAnswer = calculateAnswer(num1, num2, op);
-        // Increase the score if the answer is correct.
-        if (userAnswer == correctAnswer){
-            System.out.println("Correct answer.");
-            score = score + 1;
 
-        }
-        else{
-            System.out.println("Oops, that's not right. The correct answer is: " + correctAnswer);
-        }
-        
-        num1 = random.nextInt(10) + 1;
-        num2 = random.nextInt(10) + 1;
-        opNum = random.nextInt(4) + 1;
-        op = chooseOperator(opNum);
-        printQuestion(num1,num2,op);
-        System.out.print("Ans: ");
-        userAnswer = scan.nextInt();
-        correctAnswer = calculateAnswer(num1, num2, op);
-        // Increase the score if the answer is correct.
-        if (userAnswer == correctAnswer){
-            System.out.println("Correct answer.");
-            score = score + 1;
-
-        }
-        else{
-            System.out.println("Oops, that's not right. The correct answer is: " + correctAnswer);
-        }
-        
-        num1 = random.nextInt(10) + 1;
-        num2 = random.nextInt(10) + 1;
-        opNum = random.nextInt(4) + 1;
-        op = chooseOperator(opNum);
-        printQuestion(num1,num2,op);
-        System.out.print("Ans: ");
-        userAnswer = scan.nextInt();
-        correctAnswer = calculateAnswer(num1, num2, op);
-        // Increase the score if the answer is correct.
-        if (userAnswer == correctAnswer){
-            System.out.println("Correct answer.");
-            score = score + 1;
-
-        }
-        else{
-            System.out.println("Oops, that's not right. The correct answer is: " + correctAnswer);
-        }
-        
-        num1 = random.nextInt(10) + 1;
-        num2 = random.nextInt(10) + 1;
-        opNum = random.nextInt(4) + 1;
-        op = chooseOperator(opNum);
-        printQuestion(num1,num2,op);
-        System.out.print("Ans: ");
-        userAnswer = scan.nextInt();
-        correctAnswer = calculateAnswer(num1, num2, op);
-        // Increase the score if the answer is correct.
-        if (userAnswer == correctAnswer){
-            System.out.println("Correct answer.");
-            score = score + 1;
-
-        }
-        else{
-            System.out.println("Oops, that's not right. The correct answer is: " + correctAnswer);
-        }
-        
         // Call the printResult method here.
-        printResult(userName, score);
+        printResult(userName,score);
 
     }
 }
